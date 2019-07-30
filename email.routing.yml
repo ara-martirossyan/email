@@ -1,0 +1,8 @@
+
+email.email_controller_send:
+  path: '/email/send'
+  defaults:
+    _controller: '\Drupal\email\Controller\EmailController::send'
+    _title: 'Send Mail'
+  requirements:
+    _permission: 'access content'

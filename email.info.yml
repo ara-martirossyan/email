@@ -1,0 +1,5 @@
+name: 'Email'
+type: module
+description: 'Allows to send themeable emails.'
+core: 8.x
+package: 'Custom'

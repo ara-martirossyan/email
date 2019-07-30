@@ -1,0 +1,4 @@
+services:
+  email.manager:
+    class: Drupal\email\Service\EmailManager
+    arguments: ['@container.namespaces', '@cache.discovery', '@module_handler', '@config.factory', '@logger.factory', '@string_translation', '@renderer']

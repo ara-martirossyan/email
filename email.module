@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains email.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function email_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the email module.
+    case 'help.page.email':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows to send themeable emails.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function email_theme() {
+  return [
+    'email' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
+  ];
+}
+
+function email_mail($key, &$message, $params) {
+  $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+  $message['subject'] = '=?utf-8?B?' . base64_encode($params['subject']) . '?=';
+  $message['body'][] = $params['message'];
+}
